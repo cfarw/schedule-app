@@ -1,0 +1,17 @@
+﻿<Window x:Class="schedule_app.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:schedule_app"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="350">
+    <Grid Background="#FFACACAC">
+        <Label Content="Label" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top" Width="215" Background="White" Height="26"/>
+        <ComboBox Name="members_combo_box" HorizontalAlignment="Center" Margin="0,92,0,0" VerticalAlignment="Top" Width="217" Height="21"/>
+        <DatePicker Name="date_picker" HorizontalAlignment="Left" Margin="133,123,0,0" VerticalAlignment="Top" Height="24" Width="146"/>
+        <Button Content="Filter" HorizontalAlignment="Center" Margin="0,159,0,0" VerticalAlignment="Top" Height="27" Width="54" Click="filter_button_clicked_event"/>
+        <ListBox Name="list_box" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,204,0,23" HorizontalAlignment="Center" Width="328"/>
+        <CheckBox Name="check_box" Content="By Date?" HorizontalAlignment="Left" Margin="64,127,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

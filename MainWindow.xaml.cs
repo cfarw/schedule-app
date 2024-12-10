@@ -11,8 +11,9 @@ using System.Windows.Shapes;
 
 namespace schedule_app {
 	public partial class MainWindow {
-		private Database _db;
-		private DateTime _default_date = DateTime.Today;
+		private readonly Database _db;
+		private readonly DateTime _default_date = DateTime.Today;
+		private const string _default_event_name = "Event name";
 
 		public MainWindow() {
 			InitializeComponent();
@@ -47,18 +48,26 @@ namespace schedule_app {
 			members_combo_box.SelectedIndex = 0;
 		}
 		private void init_events() {
-			_db.add_event("@everyone", new DateTime(2025, 4, 5, 12, 30, 0), "Fanmeeting in Seoul");
+			_db.add_event("@everyone", new DateTime(2025, 4, 5), "Fanmeeting in Seoul");
 		}
 
-		private void filter_button_clicked_event(object sender, RoutedEventArgs e) {
-            bool status = check_box.IsChecked ?? false;
+		private void filter_on_click_event(object sender, RoutedEventArgs e) {
+			var status = check_box.IsChecked ?? false;
 			var events = status ?
 				_db.get_events((string) members_combo_box.SelectedItem, date_picker.SelectedDate ?? _default_date) :
-                _db.get_events((string) members_combo_box.SelectedItem);
+				_db.get_events((string) members_combo_box.SelectedItem);
 
 			list_box.Items.Clear();
 			foreach(var it in events)
-				list_box.Items.Add(_db.get_member_by_id(it.member_id) + " " + it.date.ToString() + " " + it.event_name);
+				list_box.Items.Add(_db.get_member_by_id(it.member_id) + " " + it.date + " " + it.event_name);
+		}
+
+		private void add_entry_on_click_event(object sender, RoutedEventArgs e) {
+			if (text_box.Text == _default_event_name)
+				return;
+
+			_db.add_event((string) members_combo_box.SelectedItem, date_picker.SelectedDate ?? _default_date, text_box.Text);
+			text_box.Text = _default_event_name;
 		}
 	}
 }

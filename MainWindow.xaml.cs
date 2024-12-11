@@ -1,19 +1,10 @@
-﻿using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace schedule_app {
 	public partial class MainWindow {
 		private readonly Database _db;
-		private readonly DateTime _default_date = DateTime.Today;
-		private const string _default_event_name = "Event name";
+		private static readonly DateTime default_date = DateTime.Today;
+		private const string default_event_name = "Event name";
 
 		public MainWindow() {
 			InitializeComponent();
@@ -39,7 +30,7 @@ namespace schedule_app {
 			]);
 			init_events();
 
-			date_picker.SelectedDate = _default_date;
+			date_picker.SelectedDate = default_date;
 		}
 
 		private void init_names(string[] names) {
@@ -53,9 +44,9 @@ namespace schedule_app {
 
 		private void filter_on_click_event(object sender, RoutedEventArgs e) {
 			var status = check_box.IsChecked ?? false;
-			var events = status ?
-				_db.get_events((string) members_combo_box.SelectedItem, date_picker.SelectedDate ?? _default_date) :
-				_db.get_events((string) members_combo_box.SelectedItem);
+			var events = (status ?
+				_db.get_events((string)members_combo_box.SelectedItem, date_picker.SelectedDate ?? default_date) :
+				_db.get_events((string)members_combo_box.SelectedItem)).ToList();
 
 			list_box.Items.Clear();
 			foreach(var it in events)
@@ -63,11 +54,11 @@ namespace schedule_app {
 		}
 
 		private void add_entry_on_click_event(object sender, RoutedEventArgs e) {
-			if (text_box.Text == _default_event_name)
+			if (text_box.Text == default_event_name)
 				return;
 
-			_db.add_event((string) members_combo_box.SelectedItem, date_picker.SelectedDate ?? _default_date, text_box.Text);
-			text_box.Text = _default_event_name;
+			_db.add_event((string) members_combo_box.SelectedItem, date_picker.SelectedDate ?? default_date, text_box.Text);
+			text_box.Text = default_event_name;
 		}
 	}
 }

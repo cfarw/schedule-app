@@ -31,31 +31,15 @@
 			_events.Add(new EventPole(_members_by_name[member_name], date, event_name));
 		}
 
-		public List<EventPole> get_events(string member_name) {
-			List<EventPole> result = [];
-			if (member_name != "@all") {
-				foreach (var pole in _events) {
-					if (pole.member_id == _members_by_name[member_name])
-						result.Add(pole);
-				}
-			} else
-				result = _events;
-			return result;
+		public IEnumerable<EventPole> get_events(string member_name) {
+			return member_name != "@all" ? 
+				_events.Where(pole => pole.member_id == _members_by_name[member_name]) : 
+				_events;
 		}
-		public List<EventPole> get_events(string member_name, DateTime date) {
-			List<EventPole> result = [];
-			if (member_name != "@all") {
-				foreach (var pole in _events) {
-					if (pole.member_id == _members_by_name[member_name] && check_dates(pole.date, date))
-						result.Add(pole);
-				}
-			} else {
-				foreach (var pole in _events) {
-					if (check_dates(pole.date, date))
-						result.Add(pole);
-				}
-			}
-			return result;
+		public IEnumerable<EventPole> get_events(string member_name, DateTime date) {
+			return member_name != "@all" ?
+				_events.Where(pole => pole.member_id == _members_by_name[member_name] && check_dates(pole.date, date)) :
+				_events.Where(pole => check_dates(pole.date, date));
 		}
 
 		public string get_member_by_id(uint id) {

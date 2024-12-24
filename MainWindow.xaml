@@ -3,18 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:schedule_app"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="350">
 	<Grid Background="#FFACACAC" Margin="0,0,0,-86">
 		<Label Content="Filter by date and person" HorizontalAlignment="Left" Margin="20,53,0,0" VerticalAlignment="Top" Width="220" Background="White" Height="26"/>
-		<ComboBox Name="members_combo_box" HorizontalAlignment="Left" Margin="20,92,0,0" VerticalAlignment="Top" Width="220" Height="21"/>
-		<DatePicker Name="date_picker" HorizontalAlignment="Left" Margin="91,124,0,0" VerticalAlignment="Top" Height="24" Width="149"/>
-		<Button Content="Filter" HorizontalAlignment="Left" Margin="254,54,0,0" VerticalAlignment="Top" Height="91" Width="66" Click="filter_on_click_event" RenderTransformOrigin="-0.3,0.191"/>
-		<ListBox Name="list_box" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,255,0,23" HorizontalAlignment="Center" Width="328"/>
-		<CheckBox Name="check_box" Content="By Date?" HorizontalAlignment="Left" Margin="20,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.004,0.609" Width="68"/>
+		<ComboBox Name="MembersComboBox" HorizontalAlignment="Left" Margin="20,92,0,0" VerticalAlignment="Top" Width="220" Height="21"/>
+		<DatePicker Name="DatePicker" HorizontalAlignment="Left" Margin="91,124,0,0" VerticalAlignment="Top" Height="24" Width="149"/>
+		<Button Content="Filter" HorizontalAlignment="Left" Margin="254,54,0,0" VerticalAlignment="Top" Height="91" Width="66" Click="FilterOnClickEvent" RenderTransformOrigin="-0.3,0.191"/>
+		<ListBox Name="ListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,255,0,23" HorizontalAlignment="Center" Width="328"/>
+		<CheckBox Name="CheckBox" Content="By Date?" HorizontalAlignment="Left" Margin="20,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.004,0.609" Width="68"/>
 		<Label Content="Add new event &#xD;&#xA;(you can select date and person's name)" HorizontalAlignment="Left" Margin="20,161,0,0" VerticalAlignment="Top" Width="220" Background="White" Height="42"/>
-		<TextBox Name="text_box" HorizontalAlignment="Left" Margin="20,213,0,0" TextWrapping="Wrap" Text="Event name" VerticalAlignment="Top" Width="220" Height="23" FontSize="14"/>
-		<Button Content="Add entry" HorizontalAlignment="Left" Margin="255,158,0,0" VerticalAlignment="Top" Height="79" Width="65" Click="add_entry_on_click_event"/>
+		<TextBox Name="TextBox" HorizontalAlignment="Left" Margin="20,213,0,0" TextWrapping="Wrap" Text="Event name" VerticalAlignment="Top" Width="220" Height="23" FontSize="14"/>
+		<Button Content="Add entry" HorizontalAlignment="Left" Margin="255,158,0,0" VerticalAlignment="Top" Height="79" Width="65" Click="AddEntryOnClickEvent"/>
 	</Grid>
 </Window>
